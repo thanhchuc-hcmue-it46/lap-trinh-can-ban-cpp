@@ -16,51 +16,55 @@ using namespace std;
 
 int main ()
 {
-    int day, month, year;
-    cin>>day>>month>>year;
+    int a, b, c;
+    cin>>a>>b>>c;
     
-    bool isCorrectYear = year >= 1900;
-    bool isCorrectMonth = month >= 1 && month <= 12;
-    bool isLeapYear = year >=1900 && (year%400==0 || (year%4==0 && year%100!=0));
-    bool isCorrectDay = false;
-   
-    //  với những tháng có 31 ngày
-    if ((month == 1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12) && (day >= 1 && day <=31))
-    {
-        isCorrectDay = true;
-    }
-    // với những tháng có 30 ngày
-    if ((month==4 || month==6 || month==9 || month==11) && (day >= 1 && day <=30))
-    {
-        isCorrectDay = true; 
-    }
-    // với tháng 2
-    if (month==2) 
-    {
-        if (isLeapYear)
-        {
-           if (day >=1 && day <=29)
-           {
-               isCorrectDay = true;
-           }
+    // Vung tinh toan
+    if (c>=1900) {
+        
+        // Nhung thang 31 ngay
+        if ((b==1 || b==3 || b==5|| b==7 || b==8 || b==10 || b==12) && (a>=1 && a<=31)) {
+            cout<<"YES";
         }
-        else
-        {
-            if (day >= 1 && day <= 28)
-            {
-                isCorrectDay = true;
+        // Nhung thang 30 ngay
+        else if ((b==4 || b==6 || b==9 || b==11) && (a>=1 && a<=30)) {
+            cout<<"YES";
+        }
+        else {
+            
+            // Gio chi con thang 2 Hoan la ngay khong nam trong ca khoang tren vd no nha 34
+            
+            if (b == 2) {
+                if (c % 400 == 0 || (c%4 == 0 && c%100 != 0)) {
+                    
+                    // No la nam nhuan. Nen thang 2 co 29 ngay
+                    if (a >= 1 && a <= 29) {
+                        cout<<"YES";
+                    } else {
+                        cout<<"NO";
+                    }
+                    
+                } else {
+                    
+                    // No khong phai la nam nhuan. Nen thang 2 co 28 ngay
+                    if (a >= 1 && a <= 28) {
+                        cout<<"YES";
+                    } else {
+                        cout<<"NO";
+                    }
+                    
+                }
+            } else {
+                // khong phai thang 2 thi ngay nhap sai vd 34
+                cout<<"NO";
             }
         }
-    }
-
-    if (isCorrectYear && isCorrectMonth && isCorrectDay)
-    {
-        cout<<"YES";
     }
     else
     {
         cout<<"NO";
     }
+
    
     return 0;
 }
