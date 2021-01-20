@@ -1,6 +1,4 @@
 #include <iostream>
-#include <string.h>
-
 using namespace std;
 
 typedef struct
@@ -10,113 +8,114 @@ typedef struct
     int nam;
 } NgayThangNam;
 
-bool laSoNguyenTo(int n);
-bool laNguyenToCungNhau(int c1, int c2);
+bool laSoNguyenTo(int y);
+bool laSoNguyenToCungNhau(int j,int k);
 
 int main()
 {
     int n;
     cin>>n;
     
-    NgayThangNam a[n];
-    for (int i = 0; i < n; i++)
+    NgayThangNam a[n]; 
+    
+    for (int i=0; i<n; i++)
     {
         cin>>a[i].ngay>>a[i].thang>>a[i].nam;
     }
     
-    // Dong 1: in NgayThangNam theo thu tu nguoc lai so voi luc nhap
-    for (int i = n-1; i >= 0; i--)
+    // dong 1 in nguoc
+    for (int i=n-1; i>=0; i--)
     {
         cout<<a[i].ngay<<"/"<<a[i].thang<<"/"<<a[i].nam<<" ";
     }
-    cout<<endl;
+    cout<<"\n";
     
-    // Dong 2: in NgayThangNam co nam nho nhat, NgayThangNam co nam lon nhat
-    NgayThangNam b1 = a[0];
-    NgayThangNam b2 = a[0];
-    for (int i = 0; i < n; i++)
+    //dong 2 in NgayThangNam co nam lon nhat,cos nam nho nhat
+    NgayThangNam namMax = a[0];
+    NgayThangNam namMin = a[0];
+    for (int i=0; i<n; i++)
     {
-        if (a[i].nam < b1.nam)
-        {
-            b1 = a[i];
+        if (a[i].nam > namMax.nam) {
+            namMax = a[i];
         }
-        if (a[i].nam > b2.nam)
-        {
-            b2 = a[i];
+        if (a[i].nam < namMin.nam){
+            namMin = a[i];
         }
     }
-    cout << b1.ngay<<"/"<<b1.thang<<"/"<<b1.nam<<" "<<b2.ngay<<"/"<<b2.thang<<"/"<<b2.nam;
-    cout << endl;
+    cout<<namMin.ngay<<"/"<<namMin.thang<<"/"<<namMin.nam<<" ";
+    cout<<namMax.ngay<<"/"<<namMax.thang<<"/"<<namMax.nam<<"\n";
     
-    // Dong 3: in so luong NgayThangNam co nam la so nguyen to
-    int x = 0;
-    for (int i = 0; i < n; i++)
+    //dong 3 in số lượng NgayThangNam có nam là so nguyen to
+    int x=0;
+    for (int i=0; i<n; i++)
     {
-        if (laSoNguyenTo(a[i].nam) == true)
+        if (laSoNguyenTo(a[i].nam) == true) 
         {
             x++;
         }
+        
     }
-    cout << x << endl;
+    cout<<x<<"\n";
     
-    // Dong 4: in so luong NgayThangNam co ngay va thang la so nguyen to cung nhau
-    int y = 0;
-    for (int i = 0; i < n; i++)
+    // dong 4 in so luong NgayThangNam có ngay và thang laSoNguyenToCungNhau
+    int s=0;
+    for (int i=0; i<n; i++)
     {
-        if (laNguyenToCungNhau(a[i].ngay, a[i].thang))
+        if (laSoNguyenToCungNhau(a[i].ngay, a[i].thang) == true)
         {
-            y++;
+            s++;
         }
     }
-    cout << y;
+    cout <<s;
+
     return 0;
 }
 
-bool laSoNguyenTo(int n)
+bool laSoNguyenTo(int y)
 {
-    if (n > 1)
+    if (y > 1)
     {
-        for (int i=2; i <= n/2; i++)
+        for (int i=2; i <= y/2; i++)
         {
-           if (n % i == 0)
-           {
-              return false;
-           }
-            
+            if (y % i == 0 )
+            {
+                return false;
+            }
         }
-        
         return true;
-        
     }
     return false;
 }
 
-bool laNguyenToCungNhau(int c1, int c2)
+bool laSoNguyenToCungNhau (int j, int k)
 {
     int ucln = 1;
-    int tmpC1 = c1;
-    int tmpC2 = c2;
-    while (tmpC1 != tmpC2)
+    if(j==k)
     {
-        if (tmpC1 == tmpC2)
-        {
-            ucln = tmpC1;
-        }
-        else if (tmpC1 > tmpC2)
-        {
-            tmpC1 = tmpC1 - tmpC2;
-        }
-        else
-        {
-           tmpC2 = tmpC2 - tmpC1; 
-        }
+        ucln = k;
     }
-    ucln = tmpC1;
-    
-    if (ucln == 1)
+    else if (j<=0 || k<=0)
     {
-        return true;
+        ucln = 0;
+    }
+    else 
+    {
+        int jTmp = j;
+        int kTmp = k;
+        while (jTmp != kTmp)
+        {
+            if (jTmp > kTmp)
+            {
+                jTmp = jTmp - kTmp;
+            }
+            else if (kTmp > jTmp)
+            {
+                kTmp = kTmp - jTmp;
+            }
+        }
+        ucln = jTmp;
     }
     
-    return false;
+    return ucln == 1;
+    
 }
