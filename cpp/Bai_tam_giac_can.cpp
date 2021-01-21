@@ -12,7 +12,7 @@
 //         __*****__
 //         _*******_
 //         *********
-// Lưu ý: 
+// Lưu ý:
 // Xuất chính xác từng ký tự. Không xuất dư hoặc thiếu khoảng trắng, không xuất dư endl dòng cuối cùng.
 // Các ký tự gạch nối màu đen (_) ở phía trên đại diện cho khoảng trắng mà các bạn phải xuất ra màn hình.
 //  Phải có các khoảng trắng này thì mới được tính là tam giác cân
@@ -24,25 +24,23 @@ int main ()
 {
 	int n,i,j;
 	cin>>n;
-	
-	int soLuongDauSao = 1;
-	int soLuongDauCach = n;
+
 	for (int i=1; i<=n; i++)
 	{
-	    // in dấu cách
-	    for (int j=1; j<=soLuongDauCach; j++)
+	    for (int j=1; j<=(n-i); j++)
 	    {
 	        cout<<" ";
 	    }
-	    for (int j=1; j<=soLuongDauSao; j++)
+	    for (int j=1; j<=((i-1)*2 + 1); j++)
 	    {
 	        cout<<"*";
 	    }
-	  
-	    cout<<""<<"\n";
-	    
-	    soLuongDauSao = soLuongDauSao + 2;
-	    soLuongDauCach = soLuongDauCach - 1;
+	    for (int j=1; j<=(n-i); j++)
+	    {
+	        cout<<" ";
+	    }
+
+	    cout<<"\n";
 	}
 
 	return 0;
