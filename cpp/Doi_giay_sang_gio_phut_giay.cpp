@@ -9,7 +9,7 @@ int main()
 {
     int n, giay, phut, gio;
     cin>>n;
-    if (n >= 0 && n >= 3600)
+    if (n > 0)
     {
         gio = n/3600;
         n = n - gio * 3600;
