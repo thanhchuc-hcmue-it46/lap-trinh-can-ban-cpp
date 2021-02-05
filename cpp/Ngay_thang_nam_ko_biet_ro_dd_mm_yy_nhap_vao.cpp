@@ -53,7 +53,6 @@ int main()
     cout << "sau "<<n<<" ngay thi se la \n";
     
     
-    int nkn[13]={0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int nn[13]={0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     
     while (n > 0)
@@ -61,103 +60,57 @@ int main()
         if (laNamNhuan(nam))
         {
             cout<<nam<<" nam nhuan | n = " << n <<"\n";
-            if (ngay + n <= nn[thang])
-            {
-                ngay = ngay + n;
-                cout<<ngay<<"/"<<thang<<"/"<<nam;
-                return 0;
-            }
-            else
-            {
-                // Sau n ngay phai sang thang tiep theo
-                if (thang < 12) {
-                    cout<<"LOG: n = "<<n << " | " <<ngay <<"/"<<thang<<"/"<<nam <<endl;
-                    // van con trong nam hien tai
-                    for (int t = thang + 1; t <= 12; t++)
-                    {
-                        if (t - 1 == 1)
-                        {
-                            n = n - (nn[t - 1] - ngay);
-                        } else {
-                            n = n - (nn[t - 1]);
-                        }
-                        
-                        if (n <= nn[t]) {
-                            cout<<n<<"/"<<t<<"/"<<nam;
-                            return 0;
-                        }
-                    }
-
-                    // Chua chem thang 12, gio chem roi qua nam moi
-                    if (n > 0) {
-                        n = n - nn[12];
-                        n--;
-                        ngay = 1;
-                        thang = 1;
-                        nam++;
-                    }
-                    
-                    
-                } else {
-                    // Thang phai qua nam sau (1/1/nam++)
-                    n = n - (nn[thang] - ngay) - 1;
-                    ngay = 1;
-                    thang = 1;
-                    nam = nam + 1;
-                }               
-                
-            }
+            nn[2] = 29;
+        } else {
+            cout<<nam<<" nam khong nhuan | n = " << n <<"\n";
+            nn[2] = 28;
         }
-           
+        
+        if (ngay + n <= nn[thang])
+        {
+            ngay = ngay + n;
+            cout<<ngay<<"/"<<thang<<"/"<<nam;
+            return 0;
+        }
         else
         {
-            cout<<nam<<" nam khong nhuan | n = " << n <<"\n";
-            if (ngay + n <= nkn[thang])
-            {
-                ngay = ngay + n;
-                cout<<ngay<<"/"<<thang<<"/"<<nam;
-                return 0;
-            }
-            else
-            {
-                // Sau n ngay phai sang thang tiep theo
-                if (thang < 12) {
-                    cout<<"LOG: n = "<<n << " | " <<ngay <<"/"<<thang<<"/"<<nam <<endl;
-                    // van con trong nam hien tai
-                    for (int t = thang + 1; t <= 12; t++)
+            // Sau n ngay phai sang thang tiep theo
+            if (thang < 12) {
+                cout<<"LOG: n = "<<n << " | " <<ngay <<"/"<<thang<<"/"<<nam <<endl;
+                // van con trong nam hien tai
+                for (int t = thang + 1; t <= 12; t++)
+                {
+                    if (t - 1 == 1)
                     {
-                        if (t - 1 == 1)
-                        {
-                            n = n - (nn[t - 1] - ngay);
-                        } else {
-                            n = n - (nn[t - 1]);
-                        }
+                        n = n - (nn[t - 1] - ngay);
+                    } else {
+                        n = n - (nn[t - 1]);
+                    }
                         
-                        if (n <= nkn[t]) {
-                            cout<<n<<"/"<<t<<"/"<<nam;
-                            return 0;
-                        }
+                    if (n <= nn[t]) {
+                        cout<<n<<"/"<<t<<"/"<<nam;
+                        return 0;
                     }
+                }
 
-                    // Chua chem thang 12, gio chem roi qua nam moi
-                    if (n > 0) {
-                        n = n - nkn[12];
-                        n--;
-                        ngay = 1;
-                        thang = 1;
-                        nam++;
-                    }
-                    
-                    
-                } else {
-                    // Thang phai qua nam sau (1/1/nam++)
-                    n = n - (nkn[thang] - ngay) - 1;
+                 // Chua chem thang 12, gio chem roi qua nam moi
+                if (n > 0) {
+                    n = n - nn[12];
+                    n--;
                     ngay = 1;
                     thang = 1;
-                    nam = nam + 1;
-                }               
+                     nam++;
+                }
+                    
+                    
+            } else {
+                // Thang phai qua nam sau (1/1/nam++)
+                n = n - (nn[thang] - ngay) - 1;
+                ngay = 1;
+                thang = 1;
+                nam = nam + 1;
+            }               
                 
-            }
         }
     }
     
