@@ -12,21 +12,12 @@
 using namespace std;
 
 int Ucnl (int x, int y);
+int Bcnn (int c, int d);
 int main()
 {
-    int a,b,Bcnn,ucln;
+    int a,b;
     cin>>a>>b;
-    ucln = Ucnl(a,b);
-    if (ucln != 0)
-    {
-        Bcnn = (a*b)/ucln;
-        cout << Bcnn;
-    }
-    else 
-    {
-        cout << 0;
-    }
-    
+    cout<<Bcnn(a,b);
     return 0;
 }
 
@@ -52,4 +43,18 @@ int Ucnl (int x, int y)
         }
     }
     return x;
+}
+
+int Bcnn (int c, int d)
+{
+    int ucln = Ucnl(c,d);
+    if (ucln != 0)
+    {
+        return (c*d)/ucln;
+    }
+    else 
+    {
+        return 0;
+    }
+    
 }
