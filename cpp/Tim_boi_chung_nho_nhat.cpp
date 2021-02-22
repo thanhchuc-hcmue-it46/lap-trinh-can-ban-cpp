@@ -11,40 +11,12 @@
 
 using namespace std;
 
+int Ucnl (int x, int y);
 int main()
 {
     int a,b,Bcnn,ucln;
     cin>>a>>b;
-    int x,y;
-    x = a;
-    y = b;
-    
-    // tim uoc chung lon nhat
-    if (x == 0 || y == 0)
-    {
-        ucln = x + y;
-    }
-    else if (x == y)
-    {
-        ucln = x;
-    }
-    else
-    {
-        while (y != x)
-        {
-            if (x > y)
-            {
-                x = x - y;
-            }
-            else if (y > x)
-            {
-                y = y - x;
-            }
-        }
-        ucln = x;
-    }
-    
-    // tim boi chung nho nhat
+    ucln = Ucnl(a,b);
     if (ucln != 0)
     {
         Bcnn = (a*b)/ucln;
@@ -56,4 +28,28 @@ int main()
     }
     
     return 0;
+}
+
+int Ucnl (int x, int y)
+{
+    if (x == 0 || y == 0)
+    {
+        return x+y;
+    }
+    if (x == y)
+    {
+        return x;
+    }
+    while (y != x)
+    {
+       if (x > y)
+        {
+            x = x - y;
+        }
+        else if (y > x)
+        {
+            y = y - x;
+        }
+    }
+    return x;
 }
