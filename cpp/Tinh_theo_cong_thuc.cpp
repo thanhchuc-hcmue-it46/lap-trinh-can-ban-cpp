@@ -23,3 +23,8 @@ int main()
     cout<<fixed<<setprecision(2)<<b;
     return 0;
 }
+
+
+
+
+

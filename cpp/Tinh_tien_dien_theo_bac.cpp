@@ -38,6 +38,7 @@ int main()
             n = phanNguyen + 1;
         }
         
+        
         if (n <= 50)
         {
             s = n * 2500;

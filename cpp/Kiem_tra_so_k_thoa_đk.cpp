@@ -21,6 +21,8 @@ int main()
             if (laSoDoiXung(k))
             {
                 cout << k << "\n";
+
+                
             }
         }
     }
